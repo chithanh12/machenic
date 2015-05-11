@@ -50,6 +50,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SQLite, Version=1.0.96.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.96.0\lib\net40\System.Data.SQLite.dll</HintPath>
@@ -124,6 +125,7 @@
     <Compile Include="Model\OrderViewModel.cs" />
     <Compile Include="Model\Stock.cs" />
     <Compile Include="Model\StockPageViewModel.cs" />
+    <Compile Include="Model\Type1ViewModel.cs" />
     <Compile Include="Model\Type2ViewModel.cs" />
     <Compile Include="Model\Type3ViewModel.cs" />
     <Compile Include="Service\MachenicContext.cs" />
@@ -217,7 +219,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\BaseViewModel.cs" />
-    <Compile Include="Model\Type1ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

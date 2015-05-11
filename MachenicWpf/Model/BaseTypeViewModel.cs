@@ -3,11 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 
 namespace MachenicWpf.Model {
-    public abstract class BaseTypeViewModel : BaseViewModel, IType, IDataErrorInfo {
+    public abstract class BaseTypeViewModel : BaseViewModel, IType {
         #region Fields
         private float m_d1;
         private float? m_l;
@@ -22,7 +24,7 @@ namespace MachenicWpf.Model {
             DiameterList = ItemSourcesProvider.GetDiameters();
             BearingList = new ObservableCollection<int>();
             D = DiameterList.First();
-           
+
         }
         #region Common Properties
         public bool IsValid {
@@ -35,7 +37,7 @@ namespace MachenicWpf.Model {
                     NotifyChanged("IsValid");
                 }
             }
-            
+
         }
         public float B {
             get { return m_b; }
@@ -255,11 +257,13 @@ namespace MachenicWpf.Model {
                 return err.ToString();
             }
         }
-
+        public bool Valid() {
+            return InternalValidate();
+        }
         public string this[string columnName] {
             get {
-                var str= Validate(columnName);
-                IsValid = string.IsNullOrEmpty(str) && InternalValidate();
+                var str = Validate(columnName);
+                IsValid = string.IsNullOrEmpty(Error) && InternalValidate();
                 return str;
             }
         }
@@ -278,8 +282,19 @@ namespace MachenicWpf.Model {
         public MaterialRow BearingRow { get; set; }
         public MaterialRow SealRow { get; set; }
         public MaterialRow CirclipRow { get; set; }
-       
-        public abstract string WeightOfRoller();
+
+        public string WeightOfRoller() {
+            try {
+                if (ConfigurationManager.AppSettings["Mode"] == "DEBUG") {
+                    File.WriteAllText("log.txt", string.Format("W: {0} \r\nW1: {1} \r\nW2: {2} \r\nW3: {3} \r\nW4: {4} \r\nW5: {5} \r\n", W, W1, W2, W3, W4, W5));
+                }
+            } catch (Exception ex) {
+
+            }
+
+
+            return W.ToString();
+        }
         private void InitMaterial() {
             ShaftRow = new MaterialRow("Shaft Ø{0}") { Id = 1, Quantity = 1, Unit = "kg" };
             RollerPineRow = new MaterialRow("Roller pipe Ø{0} x {1}") { Id = 2, Quantity = 1, Unit = "kg" };
@@ -301,5 +316,78 @@ namespace MachenicWpf.Model {
             RefreshMaterial();
         }
         protected abstract void RefreshMaterial();
+        public double W {
+            get {
+                double w = Math.Round((W1 + W2 + 2 * W3 + 2 * W4 + 2 * W5 + 2 * W6).GetValueOrDefault(0), 2);
+                return w;
+            }
+        }
+        public virtual double? W1 {
+            get {
+                throw new NotImplementedException();
+            }
+        }
+        public double? W2 {
+            get {
+                double? w2 = 3.14f * (D * D - (D - 2 * t) * (D - 2 * t)) * L * 7835 / 4000000000;
+                return w2;
+            }
+        }
+        public double W3 {
+            get {
+                double w3 = 3.14 * ((X24 * X24 - (D1 - 22) * (D1 - 22)) / 4 * 3 + (12 * D1 + 36) / 4 * (X26 - 3)) * 7835 / 1000000000;
+                return w3;
+            }
+        }
+        public double W4 {
+            get {
+                if (Bearing == 203) { return 0.065; }
+                if (Bearing == 204) { return 0.11; }
+                if (Bearing == 205) { return 0.13; }
+                if (Bearing == 206) { return 0.2; }
+                if (Bearing == 207) { return 0.29; }
+                if (Bearing == 208) { return 0.37; }
+                if (Bearing == 209) { return 0.41; }
+                if (Bearing == 210) { return 0.46; }
+                if (Bearing == 304) { return 0.14; }
+                if (Bearing == 305) { return 0.23; }
+                if (Bearing == 306) { return 0.35; }
+                if (Bearing == 307) { return 0.46; }
+                if (Bearing == 308) { return 0.63; }
+                if (Bearing == 309) { return 0.83; }
+                return 1.05;
+            }
+        }
+        public double W5 {
+            get {
+                if (Bearing == 203) { return 0.112; }
+                if (Bearing == 204) { return 0.155; }
+                if (Bearing == 205) { return 0.174; }
+                if (Bearing == 206) { return 0.256; }
+                if (Bearing == 207) { return 0.356; }
+                if (Bearing == 208) { return 0.448; }
+                if (Bearing == 209) { return 0.485; }
+                if (Bearing == 210) { return 0.514; }
+                if (Bearing == 304) { return 0.212; }
+                if (Bearing == 305) { return 0.298; }
+                if (Bearing == 306) { return 0.407; }
+                if (Bearing == 307) { return 0.513; }
+                if (Bearing == 308) { return 0.652; }
+                if (Bearing == 309) { return 0.793; }
+                return 0.943;
+            }
+        }
+        public double W6 {
+            get {
+                if (d1 == 17) { return 0.001; }
+                if (d1 == 20) { return 0.002; }
+                if (d1 == 25) { return 0.002; }
+                if (d1 == 30) { return 0.003; }
+                if (d1 == 35) { return 0.005; }
+                if (d1 == 40) { return 0.006; }
+                if (d1 == 45) { return 0.007; }
+                return 0.01;
+            }
+        }
     }
 }

@@ -39,6 +39,11 @@ namespace MachenicWpf.Controls {
                 MessageBox.Show("Please fill all data!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            if (!Model.TypeModel.Valid()) {
+                MessageBox.Show("Please select drawing value!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             var order = new Order {
                 Cost = Model.Cost,
                 CustomerName = Model.CustomerName,
@@ -74,26 +79,23 @@ namespace MachenicWpf.Controls {
             if (Model.SelectedType == 1) {
                 var form = new Window1(Model.TypeModel);
                 form.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-                if (form.ShowDialog().GetValueOrDefault(false)) {
-                    Model.OrderDetail = Model.TypeModel.ToOrderDetail();
-                }
-            } if (Model.SelectedType == 2) {
+                form.ShowDialog();
+            }else if (Model.SelectedType == 2) {
                 var form = new Window2(Model.TypeModel);
                 form.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-                if (form.ShowDialog().GetValueOrDefault(false)) {
-                    Model.OrderDetail = Model.TypeModel.ToOrderDetail();
-                }
-            } if (Model.SelectedType == 3) {
+                form.ShowDialog();
+            }else if (Model.SelectedType == 3) {
                 var form = new Window3(Model.TypeModel);
-                if (form.ShowDialog().GetValueOrDefault(false)) {
-                    Model.OrderDetail = Model.TypeModel.ToOrderDetail();
-                }
+                form.ShowDialog();
             } 
             else {
                 MessageBox.Show("Comming soon!", "Infor", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+            if (Model.TypeModel != null) {
+                Model.OrderDetail = Model.TypeModel.ToOrderDetail();
+            }
+              
         }
-
         //private void SelectedTypeChanged(object sender, SelectionChangedEventArgs e) {
         //    if (Model.SelectedType == 1) {
         //        var form = new Window1(Model.TypeModel);

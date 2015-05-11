@@ -3,6 +3,7 @@ using iTextSharp.text.pdf;
 using MachenicWpf.Model;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -53,9 +54,10 @@ namespace MachenicWpf.Utils {
                     jpg.BorderWidth = 5f;
                     document.Add(jpg);
                     index++;
+                    
                     File.Delete(processImg);
                 }
-
+                
             } catch (Exception ex) {
                 //Log error;
 
@@ -147,9 +149,9 @@ namespace MachenicWpf.Utils {
             cell = new PdfPCell(new Phrase("1"));
             cell.HorizontalAlignment = 1;
             table.AddCell(cell);
-            table.AddCell(string.Format("Shaft Ø{0}", allData["X13"]));
-            int value = Nearest5(allData["A3"]);
-            cell = new PdfPCell(new Phrase(value.ToString()));
+            table.AddCell(model.ShaftRow.DisplayName);
+            //int value = Nearest5(allData["A3"]);
+            cell = new PdfPCell(new Phrase(model.ShaftRow.Length.ToString()));
             cell.HorizontalAlignment = 1;
             table.AddCell(cell);
             cell = new PdfPCell(new Phrase("01"));
@@ -160,9 +162,9 @@ namespace MachenicWpf.Utils {
             cell = new PdfPCell(new Phrase("2"));
             cell.HorizontalAlignment = 1;
             table.AddCell(cell);
-            table.AddCell(string.Format("Roller pipe Ø{0} x {1}", allData["D"], allData["t"]));
-            value = Nearest5(allData["L"]);
-            cell = new PdfPCell(new Phrase(value.ToString()));
+            table.AddCell(model.RollerPineRow.DisplayName);
+            //value = Nearest5(allData["L"]);
+            cell = new PdfPCell(new Phrase(model.RollerPineRow.Length.ToString()));
             cell.HorizontalAlignment = 1;
             table.AddCell(cell);
             cell = new PdfPCell(new Phrase("01"));
@@ -173,7 +175,7 @@ namespace MachenicWpf.Utils {
             cell = new PdfPCell(new Phrase("3"));
             cell.HorizontalAlignment = 1;
             table.AddCell(cell);
-            table.AddCell(string.Format("Bearing stand {0}-{1}", allData["Bearing"], allData["D"]));
+            table.AddCell(model.BearingStandRow.DisplayName);
             cell = new PdfPCell(new Phrase(""));
             cell.HorizontalAlignment = 1;
             table.AddCell(cell);
@@ -185,7 +187,7 @@ namespace MachenicWpf.Utils {
             cell = new PdfPCell(new Phrase("4"));
             cell.HorizontalAlignment = 1;
             table.AddCell(cell);
-            table.AddCell(string.Format("Bearing {0}", allData["Bearing"]));
+            table.AddCell(model.BearingRow.DisplayName);
             cell = new PdfPCell(new Phrase(""));
             cell.HorizontalAlignment = 1;
             table.AddCell(cell);
@@ -197,7 +199,7 @@ namespace MachenicWpf.Utils {
             cell = new PdfPCell(new Phrase("5"));
             cell.HorizontalAlignment = 1;
             table.AddCell(cell);
-            table.AddCell(string.Format("Seal for bearing {0}", allData["Bearing"]));
+            table.AddCell(model.SealRow.DisplayName);
             cell = new PdfPCell(new Phrase(""));
             cell.HorizontalAlignment = 1;
             table.AddCell(cell);
@@ -209,7 +211,7 @@ namespace MachenicWpf.Utils {
             cell = new PdfPCell(new Phrase("6"));
             cell.HorizontalAlignment = 1;
             table.AddCell(cell);
-            table.AddCell(string.Format("Circlip for shaft Ø{0}", allData["d1"]));
+            table.AddCell(model.CirclipRow.DisplayName);
             cell = new PdfPCell(new Phrase(""));
             cell.HorizontalAlignment = 1;
             table.AddCell(cell);

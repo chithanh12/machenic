@@ -164,14 +164,14 @@ namespace MachenicWpf.Model {
                 return 0.019f;
             }
         }
-        public float? Y17 {
+        public float Y17 {
             get {
                 return d1 + 2;
             }
         }
         public float? Y18 {
             get {
-                return 177 + L - 250 + 2 * (11 - B);
+                return 177 + L - 250 + 2 * (14 - B);
             }
         }
         public float? Y19 {
@@ -360,9 +360,6 @@ namespace MachenicWpf.Model {
             CirclipRow.UnitCost = float.Parse(arr[17].Substring(arr[17].IndexOf(":") + 1));
         }
 
-        public override string WeightOfRoller() {
-            return "TODO";
-        }
         protected override bool InternalValidate() {
             return L.HasValue && C1.HasValue && C2.HasValue && C4.HasValue && C6.HasValue;
         }
@@ -372,25 +369,34 @@ namespace MachenicWpf.Model {
             return lst;
         }
         public override void NotifyChanged(string prop) {
+            base.NotifyChanged(prop);
             if (prop == "d1") {
                 base.NotifyChanged("C6");
+            } else if (prop == "L") {
+                base.NotifyChanged("C1");
             }
-            base.NotifyChanged(prop);
+            
+            
         }
         protected override void RefreshMaterial() {
-            //ShaftRow.SetParameter(13);
+            ShaftRow.SetParameter(Y17);
             RollerPineRow.SetParameter(D, t);
             BearingStandRow.SetParameter(Bearing, D);
             BearingRow.SetParameter(Bearing);
             SealRow.SetParameter(Bearing);
             CirclipRow.SetParameter(d1);
             // Set Length
-            //ShaftRow.Length = PdfHelper.Nearest5(A3);
+            ShaftRow.Length = PdfHelper.Nearest5(C5);
             RollerPineRow.Length = PdfHelper.Nearest5(L);
             //Update weight
-            //BearingStandRow.Weight = Math.Round((3.14f * ((X24 * X24 - (D1 - 22) * (D1 - 22)) / 4 * 3 + (12 * D1 + 36) / 4 * (X26 - 3)) * 7835) / 1000000000, 2);
+            BearingStandRow.Weight = Math.Round((3.14f * ((X24 * X24 - (D1 - 22) * (D1 - 22)) / 4 * 3 + (12 * D1 + 36) / 4 * (X26 - 3)) * 7835) / 1000000000, 2);
             RollerPineRow.Weight = Math.Round(3.14f * (D * D - (D - 2 * t) * (D - 2 * t)) * PdfHelper.Nearest5(L) * 7835 / 4000000000, 2);
-            //ShaftRow.Weight = Math.Round(3.14f * X13 * X13 * PdfHelper.Nearest5(A3) * 7835 / 4000000000, 2);
+            ShaftRow.Weight = Math.Round(3.14f * Y17 *Y17 * PdfHelper.Nearest5(C5) * 7835 / 4000000000, 2);
+        }
+        public override double? W1 {
+            get {
+                return 3.14/4*7835*(Y17*Y17*Y18 +2*d1*d1*Y20) / 1000000000;
+            }
         }
     }
 }

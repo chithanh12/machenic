@@ -106,7 +106,7 @@
                 <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="2">Length (mm)</TextBlock>
                 <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="3">Quantity</TextBlock>
                 <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="4">Weight (kg)</TextBlock>
-                <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="5">Unit cost</TextBlock>
+                <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="5">Unit cost ($)</TextBlock>
                 <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="6">Cost</TextBlock>
 
             </local:BorderGrid>

@@ -19,7 +19,7 @@ namespace MachenicWpf.Model {
                 new DisplayItem{ Value = 2, Text ="Type 2"},
                 new DisplayItem{ Value = 3, Text ="Type 3"}
             };
-            
+
         }
 
         private string m_orderNo;
@@ -149,16 +149,16 @@ namespace MachenicWpf.Model {
                     NotifyChanged("SelectedType");
                     if (value == 1) {
                         TypeModel = new Type1ViewModel();
-                    } if (value == 2) {
+                    } else if (value == 2) {
                         TypeModel = new Type2ViewModel();
                     } else if (value == 3) {
                         TypeModel = new Type3ViewModel();
-                    }
-                    else {
+                    } else {
                         //throw new NotImplementedException();
                         Materials.Clear();
                         return;
                     }
+                    this.OrderDetail = TypeModel.ToOrderDetail();
                     //TODO:
                     foreach (var item in Materials) {
                         item.PropertyChanged -= item_PropertyChanged;

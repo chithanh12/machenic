@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
 namespace MachenicWpf.Model {
-    public interface IType {
+    public interface IType : IDataErrorInfo{
        
         Dictionary<string, object> GetAllValues();
         string ToOrderDetail(bool store = false);
@@ -16,5 +17,6 @@ namespace MachenicWpf.Model {
         MaterialRow SealRow { get; set; }
         MaterialRow CirclipRow { get; set; }
         string WeightOfRoller();
+        bool Valid();
     }
 }
