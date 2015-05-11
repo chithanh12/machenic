@@ -1,0 +1,38 @@
+﻿<Window x:Class="MachenicWpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:pageTransitions="clr-namespace:WpfPageTransitions;assembly=WpfPageTransitions"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="CONVEYOR ROLLER" Height="350" Width="525" WindowState="Maximized" Loaded="Window_Loaded">
+    <Window.Resources>
+        <ResourceDictionary>
+
+        </ResourceDictionary>
+
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Margin="5,20,5,5" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left">
+            <Button Margin="5" Padding="10,5,10,5" Name="btnOrder" Content="Orders" Click="btnOrder_Click"  />
+            <!--<xctk:DropDownButton x:Name="_dropDownButton" Padding="10,5,10,5"
+                              Margin="5"
+                              Width="100"
+                              HorizontalAlignment="Left"
+                              Content="Drawings">
+                <xctk:DropDownButton.DropDownContent>
+                    <StackPanel Width="100">
+                        <Button Click="btnType1_Click"  Margin="1" Padding="10,5,10,5">Type 1</Button>
+                        <Button Click="btnType2_Click"  Margin="1" Padding="10,5,10,5">Type 2</Button>
+                        <Button Click="btnType3_Click"  Margin="1" Padding="10,5,10,5">Type 3</Button>
+                        <Button Click="btnType4_Click"  Margin="1" Padding="10,5,10,5">Type 4</Button>
+                    </StackPanel>
+                </xctk:DropDownButton.DropDownContent>
+            </xctk:DropDownButton>-->
+            <Button Margin="5" Padding="10,5,10,5" Name="btnStock" Content="Stocks" Click="btnStock_Click"  />
+        </StackPanel>
+        <pageTransitions:PageTransition  Grid.Row="1" Name="pageTransitionControl" Margin="5,20,5,5" TransitionType="SlideAndFade" />
+    </Grid>
+</Window>

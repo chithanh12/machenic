@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Bearings>
+  <item b="203" d1="17" D1="40" B="12"></item>
+  <item b="204" d1="20" D1="47" B="14"></item>
+  <item b="205" d1="25" D1="52" B="15"></item>
+  <item b="206" d1="30" D1="62" B="16"></item>
+  <item b="207" d1="35" D1="72" B="17"></item>
+  <item b="208" d1="40" D1="80" B="18"></item>
+  <item b="209" d1="45" D1="85" B="19"></item>
+  <item b="210" d1="50" D1="90" B="20"></item>
+  <item b="304" d1="20" D1="52" B="15"></item>
+  <item b="305" d1="25" D1="62" B="17"></item>
+  <item b="306" d1="30" D1="72" B="19"></item>
+  <item b="307" d1="35" D1="80" B="21"></item>
+  <item b="308" d1="40" D1="90" B="23"></item>
+  <item b="309" d1="45" D1="100" B="25"></item>
+  <item b="310" d1="50" D1="110" B="27"></item>
+</Bearings>

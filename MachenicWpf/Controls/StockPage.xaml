@@ -1,0 +1,88 @@
+﻿<UserControl x:Class="MachenicWpf.Controls.StockPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+            xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
+             xmlns:compModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+             BorderBrush="Black" BorderThickness="1" d:DesignHeight="800" d:DesignWidth="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <!--<RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>-->
+        </Grid.RowDefinitions>
+        <GroupBox Height="80" Header="Filter" DataContext="{Binding Path=.Criteria}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="5"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="5" Padding="10, 5,10,5">StockName</TextBlock>
+                <TextBox Grid.Column="1" Padding="3" Margin="5" Text="{Binding Path=OrderNo}" AcceptsReturn="False"></TextBox>
+
+                <TextBlock Margin="5" Grid.Column="2" Padding="10, 5,10,5">Quantity</TextBlock>
+                <xctk:DoubleUpDown  Grid.Column="3" x:Name="txtQuantity"
+                    AllowInputSpecialValues="Any"
+                    ClipValueToMinMax="False"
+                    ShowButtonSpinner="True" 
+                    AllowSpin="True"
+                    AllowTextInput="True"
+                    IsReadOnly="False" 
+                    MouseWheelActiveOnFocus="True"
+                    Increment="1"
+                    Maximum="999"
+                    Minimum="1"
+                    DisplayDefaultValueOnEmptyText="False"
+                    ButtonSpinnerLocation="Right"
+                    ParsingNumberStyle="Any"
+                    Watermark="Enter Text"
+                    Value="{Binding Path=Quantity}" />
+                <Button Padding="10, 5,10,5" Margin="5" Click="SeachClick" Grid.Column="6">Search</Button>
+
+            </Grid>
+        </GroupBox>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left">
+            <Button Margin="5" Padding="10,3" Click="CreateNewMaterial">Create New Material</Button>
+        </StackPanel>
+        <xcdg:DataGridControl Grid.Row="4" AutoCreateColumns="False" x:Name="_dataGrid" ReadOnly="True"
+                            ItemsSource="{Binding Path=.Orders}">
+            <xcdg:DataGridControl.Resources>
+                <DataTemplate x:Key="ActionButton">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Padding="10,2" Margin="2" Click="OnEditMaterial" CommandParameter="{Binding Path=.}">Edit</Button>
+                        <Button Padding="10,2" Margin="2" Click="OnDeleteMaterial" CommandParameter="{Binding Path=.}">Delete</Button>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate x:Key="DateFormat">
+                    <TextBlock Text="{Binding Path=., StringFormat=MM/dd/yyyy}"></TextBlock>
+                </DataTemplate>
+            </xcdg:DataGridControl.Resources>
+            <xcdg:DataGridControl.Columns>
+                <!--Preconfigure the OrderID Column of the grid with CellValidationRule. -->
+                <xcdg:Column FieldName="Material" Width="60" Title="Order No"></xcdg:Column>
+                <xcdg:Column FieldName="Unit" Title="Unit"></xcdg:Column>
+                <xcdg:Column FieldName="Size" Title="Size/Length"></xcdg:Column>
+                <xcdg:Column FieldName="Quantity" Title="Quantity"></xcdg:Column>
+                <xcdg:Column FieldName="ID" Title="Modify" CellContentTemplate="{StaticResource ActionButton}" ></xcdg:Column>
+
+            </xcdg:DataGridControl.Columns>
+        </xcdg:DataGridControl>
+
+    </Grid>
+</UserControl>

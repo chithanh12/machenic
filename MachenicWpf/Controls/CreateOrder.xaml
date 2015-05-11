@@ -1,0 +1,162 @@
+﻿<Window x:Class="MachenicWpf.Controls.CreateOrder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:MachenicWpf"
+        Title="Create/Edit Order"  Height="601" Width="900" WindowState="Maximized">
+    <Window.Resources>
+
+    </Window.Resources>
+    <Grid Margin="5">
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="Padding" Value="5,2"></Setter>
+            </Style>
+
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="10"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="10"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock>Order No</TextBlock>
+        <StackPanel Grid.Column="2" Orientation="Horizontal">
+            <TextBox Width="150" Text="{Binding Path=OrderNo}"></TextBox>
+            <CheckBox Margin="10, 0" IsChecked="{Binding Path=Finish}"> Has Finished</CheckBox>
+        </StackPanel>
+        
+
+        <TextBlock Grid.Row="2">Customer Name</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding Path=CustomerName}"></TextBox>
+        <TextBlock Grid.Row="4">Address</TextBlock>
+        <TextBox Grid.Row="4" Grid.Column="2" Text="{Binding Path=Address}"></TextBox>
+
+        <TextBlock Grid.Row="6">Drawing Type</TextBlock>
+        <StackPanel Grid.Row="6" Grid.Column="2" Orientation="Horizontal">
+            <ComboBox Width="80" ItemsSource="{Binding Path=AvailableTypes}" DisplayMemberPath="Text" SelectedValuePath="Value"  SelectedValue="{Binding Path=SelectedType}"></ComboBox>
+            <Button Margin="5,0,5,0" Padding="10,2" Click="OnSelectDrawingValues">Drawing Values</Button>
+        </StackPanel>
+
+        <TextBlock Grid.Row="8">Quantity</TextBlock>
+        <xctk:DoubleUpDown Grid.Row="8" Grid.Column="2" x:Name="txtQuantity"
+            AllowInputSpecialValues="Any" Width="150" HorizontalAlignment="Left"
+            ClipValueToMinMax="False"
+            IsReadOnly="False" 
+            Increment="1"
+            Maximum="999"
+            Minimum="1"
+            DisplayDefaultValueOnEmptyText="False"
+            ParsingNumberStyle="Any"
+            Value="{Binding Path=Quantity}" />
+        <TextBlock Grid.Row="10">From Date</TextBlock>
+        <xctk:DateTimePicker Grid.Row="10" Grid.Column="2" x:Name="dtFromDate"
+                                HorizontalAlignment="Left" Width="150"
+                                 IsReadOnly="False"
+                             Value="{Binding Path=FromDate}"
+                                 Format="Custom"
+                                 FormatString="MM/dd/yyyy"
+                                 Watermark="MM/dd/yyyy"
+                             Maximum="{Binding Value, ElementName=dtToDate}"
+                                 AutoCloseCalendar="True" />
+
+        <TextBlock Grid.Row="12">To Date</TextBlock>
+        <xctk:DateTimePicker Grid.Row="12" Grid.Column="2" x:Name="dtToDate"
+                                  HorizontalAlignment="Left" Width="150"
+                                 IsReadOnly="False"
+                                 Format="Custom"
+                                 FormatString="MM/dd/yyyy"
+                                 Watermark="MM/dd/yyyy"
+                                Value="{Binding Path=ToDate}"
+                                Minimum="{Binding Value, ElementName=dtFromDate}"
+                                 AutoCloseCalendar="True" />
+
+        <TextBlock Grid.Row="13">Materials</TextBlock>
+        <local:BorderGrid Grid.Column="2" Grid.Row="13" Grid.ColumnSpan="2" Margin="0,5,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="90"></ColumnDefinition>
+                <ColumnDefinition Width="90"></ColumnDefinition>
+                <ColumnDefinition Width="90"></ColumnDefinition>
+                <ColumnDefinition Width="120"></ColumnDefinition>
+                <ColumnDefinition Width="90"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="0">No.</TextBlock>
+            <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="1">Name</TextBlock>
+            <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="2">Length (mm)</TextBlock>
+            <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="3">Quantity</TextBlock>
+            <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="4">Weight (kg)</TextBlock>
+            <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="5">Unit cost</TextBlock>
+            <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="6">Cost</TextBlock>
+
+        </local:BorderGrid>
+        <ListBox Grid.Column="2" Grid.Row="14"  Grid.ColumnSpan="3" ItemsSource="{Binding Path=Materials}" HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="24"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="90"></ColumnDefinition>
+                            <ColumnDefinition Width="90"></ColumnDefinition>
+                            <ColumnDefinition Width="90"></ColumnDefinition>
+                            <ColumnDefinition Width="120"></ColumnDefinition>
+                            <ColumnDefinition Width="84"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock HorizontalAlignment="Left" Text="{Binding Path=Id}"></TextBlock>
+                        <TextBlock Grid.Column="1" Text="{Binding Path=DisplayName}"></TextBlock>
+                        <TextBlock HorizontalAlignment="Center" Grid.Column="2" Text="{Binding Path=Length}"></TextBlock>
+                        <TextBlock HorizontalAlignment="Center" Grid.Column="3" Text="{Binding Path=Quantity}"></TextBlock>
+                        <TextBlock HorizontalAlignment="Center" Grid.Column="4" Text="{Binding Path=Weight}"></TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="5">
+                        <xctk:DoubleUpDown Width="80"
+                            AllowTextInput="True"
+                            MouseWheelActiveOnFocus="True"
+                            Increment="1"
+                            Maximum="99999"
+                            Minimum="1"
+                            ButtonSpinnerLocation="Right"
+                            ParsingNumberStyle="Any"
+                            Watermark="Enter Text"
+                            Value="{Binding Path=UnitCost}" /> /<TextBlock Text="{Binding Path=Unit}"></TextBlock>
+                        </TextBlock> 
+                        <TextBlock HorizontalAlignment="Center" Grid.Column="6" Text="{Binding Path=Cost}"></TextBlock>
+                    </Grid>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <TextBlock Grid.Row="16">Drawing Values</TextBlock>
+        <TextBox Grid.Row="16" Grid.Column="2" ScrollViewer.VerticalScrollBarVisibility="Auto" AcceptsReturn="True" IsReadOnly="True" Text="{Binding Path=OrderDetail}"></TextBox>
+
+        <StackPanel Grid.Row="20" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Margin="5" Click="OnClose" Padding="15,3">Close</Button>
+            <Button Margin="5,5,0,5" Padding="15,3" Click="OnSave">Save</Button>
+        </StackPanel>
+    </Grid>
+</Window>

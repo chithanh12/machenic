@@ -1,0 +1,145 @@
+﻿<UserControl x:Class="MachenicWpf.Controls.PageOrder"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
+              xmlns:local="clr-namespace:MachenicWpf"
+             xmlns:compModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+             BorderBrush="Black" BorderThickness="1" d:DesignHeight="800" d:DesignWidth="500">
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--<GroupBox Height="80" Header="Search" DataContext="{Binding Path=.Criteria}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="5"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="5" Padding="10, 5,10,5">OrderNo</TextBlock>
+                <TextBox Grid.Column="1" Padding="3" Margin="5" Text="{Binding Path=OrderNo}" AcceptsReturn="False"></TextBox>
+                
+                <TextBlock Margin="5" Grid.Column="2" Padding="10, 5,10,5"> Customer Name</TextBlock>
+                <TextBox Grid.Column="3" Padding="3" Margin="5" Text="{Binding Path=CustomerName}" AcceptsReturn="False"></TextBox>
+                <CheckBox Margin="10,5,10,5" Content="Finish" IsChecked="{Binding Path=HasFinish}" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Button Padding="10, 5,10,5" Margin="5" Click="SeachClick" Grid.Column="6">Search</Button>
+
+            </Grid>
+        </GroupBox>-->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left"> 
+            <Button Margin="5" Padding="10,3" Click="CreateNewOrder">Create a new order</Button>
+        </StackPanel>
+        <xcdg:DataGridControl Grid.Row="4" AutoCreateColumns="False"  ReadOnly="True"
+                            ItemsSource="{Binding Path=.Orders}" x:Name="OrderGrid" SelectionChanged="OrderGrid_SelectionChanged">
+            <xcdg:DataGridControl.Resources>
+                <DataTemplate x:Key="ActionButton">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Padding="10,0" Margin="2" Click="OnEditOrder" CommandParameter="{Binding Path=.}">Edit</Button>
+                        <Button Padding="10,0" Margin="2" Click="OnDeleteOrder" CommandParameter="{Binding Path=.}">Delete</Button>
+                        <Button Padding="10,0" Margin="2" Click="OnDownloadDrawing" CommandParameter="{Binding Path=.}">Drawing</Button>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate x:Key="DateFormat">
+                    <TextBlock Text="{Binding Path=., StringFormat=MM/dd/yyyy}"></TextBlock>
+                </DataTemplate>
+            </xcdg:DataGridControl.Resources>
+            <xcdg:DataGridControl.Columns>
+                <!--Preconfigure the OrderID Column of the grid with CellValidationRule. -->
+                <xcdg:Column FieldName="OrderNo" Width="60" Title="Order No"></xcdg:Column>
+                <xcdg:Column FieldName="CustomerName" Title="Customer"></xcdg:Column>
+                <xcdg:Column FieldName="Address" Title="Address"></xcdg:Column>
+                <xcdg:Column FieldName="DrawingTypeDisplay" Title="Type"></xcdg:Column>
+                <xcdg:Column FieldName="Quantity" Width="80" Title="Quantity"></xcdg:Column>
+                <xcdg:Column FieldName="FromDate" Width="100" CellContentTemplate="{StaticResource DateFormat}" Title="From Date"></xcdg:Column>
+                <xcdg:Column FieldName="ToDate" Width="100" CellContentTemplate="{StaticResource DateFormat}" Title="To Date"></xcdg:Column>
+                <xcdg:Column FieldName="RemainingDate" Width="100" Title="Remaining Day"></xcdg:Column>
+                <!--<xcdg:Column FieldName="Cost" Title="Cost"></xcdg:Column>-->
+                <xcdg:Column FieldName="Finish" Title="Finish"></xcdg:Column>
+                <xcdg:Column FieldName="ID" Width="200" Title="Modify" CellContentTemplate="{StaticResource ActionButton}" ></xcdg:Column>
+                
+            </xcdg:DataGridControl.Columns>
+        </xcdg:DataGridControl>
+        <TextBlock Grid.Row="5" Margin="0, 10" FontWeight="Bold">
+            Specification of Material
+        </TextBlock>
+        <Grid Grid.Row="6" DataContext="{Binding Path=SelectedOrder}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <local:BorderGrid Margin="0,5,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="90"></ColumnDefinition>
+                    <ColumnDefinition Width="90"></ColumnDefinition>
+                    <ColumnDefinition Width="90"></ColumnDefinition>
+                    <ColumnDefinition Width="90"></ColumnDefinition>
+                    <ColumnDefinition Width="90"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="0">No.</TextBlock>
+                <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="1">Name</TextBlock>
+                <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="2">Length (mm)</TextBlock>
+                <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="3">Quantity</TextBlock>
+                <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="4">Weight (kg)</TextBlock>
+                <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="5">Unit cost</TextBlock>
+                <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="6">Cost</TextBlock>
+
+            </local:BorderGrid>
+            <ListBox Grid.Row="1" ItemsSource="{Binding Path=Materials}" HorizontalContentAlignment="Stretch">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="24"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="90"></ColumnDefinition>
+                                <ColumnDefinition Width="90"></ColumnDefinition>
+                                <ColumnDefinition Width="90"></ColumnDefinition>
+                                <ColumnDefinition Width="90"></ColumnDefinition>
+                                <ColumnDefinition Width="84"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock HorizontalAlignment="Left" Text="{Binding Path=Id}"></TextBlock>
+                            <TextBlock Grid.Column="1" Text="{Binding Path=DisplayName}"></TextBlock>
+                            <TextBlock HorizontalAlignment="Center" Grid.Column="2" Text="{Binding Path=Length}"></TextBlock>
+                            <TextBlock HorizontalAlignment="Center" Grid.Column="3" Text="{Binding Path=Quantity}"></TextBlock>
+                            <TextBlock HorizontalAlignment="Center" Grid.Column="4" Text="{Binding Path=Weight}"></TextBlock>
+                            <TextBlock HorizontalAlignment="Center" Grid.Column="5">
+                                <TextBlock Text="{Binding Path=UnitCost}"></TextBlock>/<TextBlock Text="{Binding Path=Unit}"></TextBlock>
+                            </TextBlock>
+                            <TextBlock HorizontalAlignment="Center" Grid.Column="6" Text="{Binding Path=Cost}"></TextBlock>
+                        </Grid>
+
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            
+        </Grid>
+        <TextBlock DataContext="{Binding Path=SelectedOrder}" Grid.Row="7" Margin="5" >TOTAL COST OF A ROLLER: <TextBlock Text="{Binding Path=Total}"></TextBlock>$</TextBlock>
+        <TextBlock DataContext="{Binding Path=SelectedOrder}" Grid.Row="8" Margin="5" >TOTAL COST OF ORDER <TextBlock Text="{Binding Path=OrderNo}"></TextBlock>: <TextBlock Text="{Binding Path=TotalOrder}"></TextBlock>$</TextBlock>
+    </Grid>
+</UserControl>
