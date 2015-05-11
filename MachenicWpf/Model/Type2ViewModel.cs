@@ -72,98 +72,162 @@ namespace MachenicWpf.Model {
                 return C3 + 2 * C4;
             }
         }
-        public float? X1 { get { return L; } }
-        public float X101 {
+        public float? Y7 {
             get {
-                if (X1 <= 120) return 0.87f;
-                if (X1 <= 180) return 1f;
-                if (X1 <= 250) return 1.15f;
-                if (X1 <= 315) return 1.3f;
-                if (X1 <= 400) return 1.4f;
-                if (X1 <= 500) return 1.55f;
-                if (X1 <= 630) return 1.75f;
-                if (X1 <= 800) return 2f;
-                if (X1 <= 1000) return 2.3f;
-                if (X1 <= 1250) return 2.6f;
-                if (X1 <= 1600) return 3.1f;
-                if (X1 <= 2000) return 3.7f;
-                if (X1 <= 2500) return 4.4f;
+                return C5;
+            }
+        }
+        public float Y8 {
+            get {
+                if (Y7 <= 120) { return 0.87f; }
+                if (Y7 <= 180) { return 1f; }
+                if (Y7 <= 250) { return 1.15f; }
+                if (Y7 <= 315) { return 1.3f; }
+                if (Y7 <= 400) { return 1.4f; }
+                if (Y7 <= 500) { return 1.55f; }
+                if (Y7 <= 630) { return 1.75f; }
+                if (Y7 <= 800) { return 2f; }
+                if (Y7 <= 1000) { return 2.3f; }
+                if (Y7 <= 1250) { return 2.6f; }
+                if (Y7 <= 1600) { return 3.1f; }
+                if (Y7 <= 2000) { return 3.7f; }
+                if (Y7 <= 2500) { return 4.4f; }
                 return 5.4f;
             }
         }
-        public float? X2 {
-            get { return X1 - 16; }
-        }
-        public float X202 {
+        public float? Y9 {
             get {
-                if (X2 <= 120) return 0.087f;
-                if (X2 <= 180) return 0.1f;
-                if (X2 <= 250) return 0.115f;
-                if (X2 <= 315) return 0.13f;
-                if (X2 <= 400) return 0.14f;
-                if (X2 <= 500) return 0.155f;
-                if (X2 <= 630) return 0.175f;
-                if (X2 <= 800) return 0.2f;
-                if (X2 <= 1000) return 0.23f;
-                if (X2 <= 1250) return 0.26f;
-                if (X2 <= 1600) return 0.31f;
-                if (X2 <= 2000) return 0.37f;
-                if (X2 <= 2500) return 0.44f;
+                return C1;
+            }
+        }
+        public float Y10 {
+            get {
+                if (Y9 <= 120) { return 0.087f; }
+                if (Y9 <= 180) { return 0.1f; }
+                if (Y9 <= 250) { return 0.115f; }
+                if (Y9 <= 315) { return 0.13f; }
+                if (Y9 <= 400) { return 0.14f; }
+                if (Y9 <= 500) { return 0.155f; }
+                if (Y9 <= 630) { return 0.175f; }
+                if (Y9 <= 800) { return 0.2f; }
+                if (Y9 <= 1000) { return 0.23f; }
+                if (Y9 <= 1250) { return 0.26f; }
+                if (Y9 <= 1600) { return 0.31f; }
+                if (Y9 <= 2000) { return 0.37f; }
+                if (Y9 <= 2500) { return 0.44f; }
                 return 0.54f;
             }
         }
-        public float X3 {
-            get { return D; }
-        }
-        public float t {
+        public float? Y11 {
             get {
-                if (D == 63.5 || D == 76) {
-                    return 3.5f;
-
-                } else if (D == 89) {
-                    return 3.0f;
-                } else if (D == 102) {
-                    return 3.0f;
-                } else if (D == 108) {
-                    return 3.0f;
-                } else if (D == 114) {
-                    return 3.5f;
-                } else if (D == 127) {
-                    return 3.0f;
-                } else if (D == 133) {
-                    return 3.0f;
-                } else if (D == 159) {
-                    return 4.0f;
-                } else if (D == 194) {
-                    return 7.0f;
-                }
-
-                return 8.0f;
-
+                return C2;
             }
         }
-        public float X4 {
+        public float? Y12 {
             get {
-
-
-                return X3 - 2 * t;
-
+                return C4;
             }
         }
-        public float X5 {
+        public float? Y13 {
             get {
-                return X4 + 1;
+                return C3;
             }
         }
-        public float X6 {
+        public float Y14 {
             get {
-                if (X5 <= 80) return 0.019f;
-                if (X5 <= 120) return 0.022f;
-                if (X5 <= 180) return 0.025f;
-                return 0.029f;
+                if (Y13 <= 120) { return 0.087f; }
+                if (Y13 <= 180) { return 0.1f; }
+                if (Y13 <= 250) { return 0.115f; }
+                if (Y13 <= 315) { return 0.13f; }
+                if (Y13 <= 400) { return 0.14f; }
+                if (Y13 <= 500) { return 0.155f; }
+                if (Y13 <= 630) { return 0.175f; }
+                if (Y13 <= 800) { return 0.2f; }
+                if (Y13 <= 1000) { return 0.23f; }
+                if (Y13 <= 1250) { return 0.26f; }
+                if (Y13 <= 1600) { return 0.31f; }
+                if (Y13 <= 2000) { return 0.37f; }
+                if (Y13 <= 2500) { return 0.44f; }
+                return 0.54f;
             }
         }
-
+        public float? Y15 {
+            get {
+                return d1;
+            }
+        }
+        public float? Y16 {
+            get {
+                if (Y15 <= 18) { return 0.011f; }
+                if (Y15 <= 30) { return 0.013f; }
+                if (Y15 <= 50) { return 0.016f; }
+                return 0.019f;
+            }
+        }
+        public float? Y17 {
+            get {
+                return d1 + 2;
+            }
+        }
+        public float? Y18 {
+            get {
+                return 177 + L - 250 + 2 * (11 - B);
+            }
+        }
+        public float? Y19 {
+            get {
+                return 247f + L - 250f + 2 * (S - 1.4f);
+            }
+        }
+        public float? Y20 {
+            get {
+                return (Y7 - Y18) / 2.0f;
+            }
+        }
+        public float? Y21 {
+            get {
+                return (Y19 - Y18) / 2f;
+            }
+        }
+        public float? Y22 {
+            get {
+                return Y20 - Y21;
+            }
+        }
+        public float? Y23 {
+            get {
+                return C6;
+            }
+        }
+        public float Y24 {
+            get {
+                if (Y23 <= 3) { return 0.025f; }
+                if (Y23 <= 6) { return 0.03f; }
+                if (Y23 <= 10) { return 0.036f; }
+                if (Y23 <= 18) { return 0.043f; }
+                if (Y23 <= 30) { return 0.052f; }
+                if (Y23 <= 50) { return 0.062f; }
+                return 0.074f;
+            }
+        }
+        public float? Y25 {
+            get {
+                if (d1 == 17) return 16f;
+                if (d1 == 20) return 18.6f;
+                if (d1 == 25) return 23.5f;
+                if (d1 == 30) return 28.5f;
+                if (d1 == 35) return 33f;
+                if (d1 == 40) return 37.5f;
+                if (d1 == 45) return 42.5f;
+                return 47.5f;
+            }
+        }
+        public float? Y26 {
+            get {
+                return Y16;
+            }
+        }
+        
         protected override string Validate(string properyName) {
             //Retun error message if there is error on else return empty or null string
             string validationMessgae = string.Empty;
@@ -200,7 +264,6 @@ namespace MachenicWpf.Model {
             return validationMessgae;
         }
 
-
         public override Dictionary<string, object> GetAllValues() {
             return new Dictionary<string, object> {
                 {"D", D},
@@ -214,6 +277,7 @@ namespace MachenicWpf.Model {
                 {"C4", C4},
                 {"C5", C5},
                 {"C6", C6},
+                {"S", S},
                 {"B", B},
                 {"X1", X1},
                 {"X101", X101},
@@ -223,30 +287,55 @@ namespace MachenicWpf.Model {
                 {"X4", X4},
                 {"X5", X5},
                 {"X6", X6},
+                {"Y7", Y7},
+                {"Y8", Y8},
+                {"Y9", Y9},
+                {"Y10", Y10},
+                {"Y11", Y11},
+                {"Y12", Y12},
+                {"Y13", Y13},
+                {"Y14", Y14},
+                {"Y15", Y15},
+                {"Y16", Y16},
+                {"Y17", Y17},
+                {"Y18", Y18},
+                {"Y19", Y19},
+                {"Y20", Y20},
+                {"Y21", Y21},
+                {"Y22", Y22},
+                {"Y23", Y23},
+                {"Y24", Y24},
+                {"Y25", Y25},
+                {"Y26", Y26},
+                {"X22", X22},
+                {"X23", X23},
+                {"X24", X24},
+                {"X25", X25},
+                {"X26", X26}
             };
         }
 
         public override string ToOrderDetail(bool store = false) {
             var builder = new StringBuilder();
-            builder.AppendFormat("D: {0}\r\n", D);
-            builder.AppendFormat("Bearing: {0}\r\n", Bearing);
-            builder.AppendFormat("d1: {0}\r\n", d1);
-            builder.AppendFormat("D1: {0}\r\n", D1);
-            builder.AppendFormat("B: {0}\r\n", B);
-            builder.AppendFormat("L: {0}\r\n", L);
-            builder.AppendFormat("C1: {0}\r\n", C1);
-            builder.AppendFormat("C2: {0}\r\n", C2);
-            builder.AppendFormat("C3: {0}\r\n", C3);
-            builder.AppendFormat("C4: {0}\r\n", C4);
-            builder.AppendFormat("C5: {0}\r\n", C5);
-            builder.AppendFormat("C6: {0} \r\n",C6);
+            builder.AppendFormat("D: {0}\r\n", D); //0
+            builder.AppendFormat("Bearing: {0}\r\n", Bearing); //1
+            builder.AppendFormat("d1: {0}\r\n", d1); //2
+            builder.AppendFormat("D1: {0}\r\n", D1); //3
+            builder.AppendFormat("B: {0}\r\n", B); //4
+            builder.AppendFormat("L: {0}\r\n", L); //5
+            builder.AppendFormat("C1: {0}\r\n", C1); //6
+            builder.AppendFormat("C2: {0}\r\n", C2); //7
+            builder.AppendFormat("C3: {0}\r\n", C3); //8
+            builder.AppendFormat("C4: {0}\r\n", C4); //9
+            builder.AppendFormat("C5: {0}\r\n", C5); //10
+            builder.AppendFormat("C6: {0} \r\n", C6); //11
 
-            builder.AppendFormat("{0}: {1} \r\n", ShaftRow.DisplayName, ShaftRow.UnitCost); //10
-            builder.AppendFormat("{0}: {1}\r\n", RollerPineRow.DisplayName, RollerPineRow.UnitCost); //11
-            builder.AppendFormat("{0}: {1}\r\n", BearingStandRow.DisplayName, BearingStandRow.UnitCost); //12
-            builder.AppendFormat("{0}: {1}\r\n", BearingRow.DisplayName, BearingRow.UnitCost); //13
-            builder.AppendFormat("{0}: {1}\r\n", SealRow.DisplayName, SealRow.UnitCost); //14
-            builder.AppendFormat("{0}: {1}\r\n", CirclipRow.DisplayName, CirclipRow.UnitCost); //15
+            builder.AppendFormat("{0}: {1} \r\n", ShaftRow.DisplayName, ShaftRow.UnitCost); //12
+            builder.AppendFormat("{0}: {1}\r\n", RollerPineRow.DisplayName, RollerPineRow.UnitCost); //13
+            builder.AppendFormat("{0}: {1}\r\n", BearingStandRow.DisplayName, BearingStandRow.UnitCost); //14
+            builder.AppendFormat("{0}: {1}\r\n", BearingRow.DisplayName, BearingRow.UnitCost); //15
+            builder.AppendFormat("{0}: {1}\r\n", SealRow.DisplayName, SealRow.UnitCost); //16
+            builder.AppendFormat("{0}: {1}\r\n", CirclipRow.DisplayName, CirclipRow.UnitCost); //17
 
             return builder.ToString();
         }
@@ -263,12 +352,12 @@ namespace MachenicWpf.Model {
             C6 = float.Parse(arr[11].Substring(3));
 
             //InitMaterial();
-            ShaftRow.UnitCost = float.Parse(arr[10].Substring(arr[10].IndexOf(":") + 1));
-            RollerPineRow.UnitCost = float.Parse(arr[11].Substring(arr[11].IndexOf(":") + 1));
-            BearingStandRow.UnitCost = float.Parse(arr[12].Substring(arr[12].IndexOf(":") + 1));
-            BearingRow.UnitCost = float.Parse(arr[13].Substring(arr[13].IndexOf(":") + 1));
-            SealRow.UnitCost = float.Parse(arr[14].Substring(arr[14].IndexOf(":") + 1));
-            CirclipRow.UnitCost = float.Parse(arr[15].Substring(arr[15].IndexOf(":") + 1));
+            ShaftRow.UnitCost = float.Parse(arr[12].Substring(arr[12].IndexOf(":") + 1));
+            RollerPineRow.UnitCost = float.Parse(arr[13].Substring(arr[13].IndexOf(":") + 1));
+            BearingStandRow.UnitCost = float.Parse(arr[14].Substring(arr[14].IndexOf(":") + 1));
+            BearingRow.UnitCost = float.Parse(arr[15].Substring(arr[15].IndexOf(":") + 1));
+            SealRow.UnitCost = float.Parse(arr[16].Substring(arr[16].IndexOf(":") + 1));
+            CirclipRow.UnitCost = float.Parse(arr[17].Substring(arr[17].IndexOf(":") + 1));
         }
 
         public override string WeightOfRoller() {
@@ -289,7 +378,7 @@ namespace MachenicWpf.Model {
             base.NotifyChanged(prop);
         }
         protected override void RefreshMaterial() {
-            //ShaftRow.SetParameter(X13);
+            //ShaftRow.SetParameter(13);
             RollerPineRow.SetParameter(D, t);
             BearingStandRow.SetParameter(Bearing, D);
             BearingRow.SetParameter(Bearing);

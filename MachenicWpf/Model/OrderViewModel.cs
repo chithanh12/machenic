@@ -151,6 +151,8 @@ namespace MachenicWpf.Model {
                         TypeModel = new Type1ViewModel();
                     } if (value == 2) {
                         TypeModel = new Type2ViewModel();
+                    } else if (value == 3) {
+                        TypeModel = new Type3ViewModel();
                     }
                     else {
                         //throw new NotImplementedException();

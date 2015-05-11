@@ -15,5 +15,15 @@
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("data/1_2.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("data/1_3.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("data/1_4.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("data/2_2.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("data/2_4.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("data/3_2.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("data/3_4.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("data/3-1.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("data/3-3.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("data/3.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("data/2-1.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("data/2-3.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("data/2.png")]
 
 

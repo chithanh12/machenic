@@ -70,6 +70,7 @@ namespace MachenicWpf.Controls {
         }
 
         private void OnSelectDrawingValues(object sender, RoutedEventArgs e) {
+            
             if (Model.SelectedType == 1) {
                 var form = new Window1(Model.TypeModel);
                 form.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
@@ -82,7 +83,13 @@ namespace MachenicWpf.Controls {
                 if (form.ShowDialog().GetValueOrDefault(false)) {
                     Model.OrderDetail = Model.TypeModel.ToOrderDetail();
                 }
-            } else {
+            } if (Model.SelectedType == 3) {
+                var form = new Window3(Model.TypeModel);
+                if (form.ShowDialog().GetValueOrDefault(false)) {
+                    Model.OrderDetail = Model.TypeModel.ToOrderDetail();
+                }
+            } 
+            else {
                 MessageBox.Show("Comming soon!", "Infor", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
